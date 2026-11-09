@@ -1,51 +1,66 @@
+
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {defineConfig} from 'vite';
-import {VitePWA} from 'vite-plugin-pwa';
+import { defineConfig } from 'vite';
+import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(() => {
   return {
+    base: '/LifeSync/',
+
     plugins: [
       react(),
       tailwindcss(),
+
       VitePWA({
         registerType: 'autoUpdate',
-        includeAssets: ['favicon.ico', 'favicon.png', 'apple-touch-icon.png', 'icon.svg'],
+
+        includeAssets: [
+          'favicon.ico',
+          'favicon.png',
+          'apple-touch-icon.png',
+          'icon.svg',
+        ],
+
         manifest: {
-          id: '/',
+          id: '/LifeSync/',
           name: 'LifeSync — Student Well-being App',
           short_name: 'LifeSync',
-          description: 'A student-focused personal well-being application to balance academics, digital habits, mental health, and sleep routines.',
+          description:
+            'A student-focused personal well-being application to balance academics, digital habits, mental health, and sleep routines.',
           theme_color: '#7c3aed',
           background_color: '#f8f7ff',
           display: 'standalone',
           orientation: 'portrait-primary',
-          start_url: '/',
-          scope: '/',
+          start_url: '/LifeSync/',
+          scope: '/LifeSync/',
+
           icons: [
             {
-              src: '/pwa-192x192.png',
+              src: '/LifeSync/pwa-192x192.png',
               sizes: '192x192',
               type: 'image/png',
               purpose: 'any',
             },
             {
-              src: '/pwa-512x512.png',
+              src: '/LifeSync/pwa-512x512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'any',
             },
             {
-              src: '/pwa-maskable-512x512.png',
+              src: '/LifeSync/pwa-maskable-512x512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'maskable',
             },
           ],
         },
+
         workbox: {
           globPatterns: ['**/*.{js,css,html,ico,png,svg,woff,woff2}'],
+
           runtimeCaching: [
             {
               urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
@@ -77,21 +92,25 @@ export default defineConfig(() => {
             },
           ],
         },
+
         devOptions: {
           enabled: true,
           type: 'module',
         },
       }),
     ],
+
     resolve: {
       alias: {
         '@': path.resolve('.'),
       },
     },
+
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modify—file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
+
       // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
     },
