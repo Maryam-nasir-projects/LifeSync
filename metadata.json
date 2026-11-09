@@ -1,0 +1,6 @@
+{
+  "name": "LifeSync — Student Well-being App",
+  "description": "A student-focused personal well-being application to balance academics, digital habits, mental health, sleep routines, and focus.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
